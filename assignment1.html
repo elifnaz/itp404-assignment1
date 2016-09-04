@@ -1,0 +1,96 @@
+<script>
+
+var reviewsData = {
+  data: [
+    {
+      id: 1,
+      attributes: {
+        'review-title': 'Terrible!',
+        'stars': 1,
+        'cost': 'high'
+      }
+    },
+    {
+      id: 2,
+      attributes: {
+        'review-title': 'Decent place',
+        'stars': 3,
+        'cost': 'average'
+      }
+    },
+    {
+      id: 3,
+      attributes: {
+        'review-title': 'I would come again',
+        'stars': 3.5,
+        'cost': 'average'
+      }
+    },
+    {
+      id: 4,
+      attributes: {
+        'review-title': 'So good, and cheap!',
+        'stars': 4,
+        'cost': 'low-average'
+      }
+    },
+    {
+      id: 5,
+      attributes: {
+        'review-title': 'Good, but pricey!',
+        'stars': 4,
+        'cost': 'high'
+      }
+    }
+  ]
+};
+
+// Task 1
+
+function extractReviews(reviewData) {
+  var dataArray = reviewData.data;
+  return dataArray.map(function(data) {
+    return {
+      id: data.id,
+      title: data.attributes['review-title'],
+      stars: data.attributes.stars,
+      cost: data.attributes.cost
+    };
+  });
+};
+console.log(extractReviews(reviewsData));
+
+// Task 2
+
+var reviews = [
+  { id: 1, title: 'Terrible!', stars: 1, cost: 'high' },
+  { id: 2, title: 'Decent place', stars: 3, cost: 'average' },
+  { id: 3, title: 'I would come again', stars: 3.5, cost: 'average' },
+  { id: 4, title: 'So good, and cheap!', stars: 4, cost: 'low-average' },
+  { id: 5, title: 'Good, but pricey!', stars: 4, cost: 'high' }
+];
+
+function findGoodReviews(reviews) {
+  return reviews.filter(function(review) {
+    return review.title.toLowerCase().indexOf('good') != -1;
+  });
+};
+console.log(findGoodReviews(reviews));
+
+// Task 3
+
+function classifyReviewsByCost(reviews) {
+  return reviews.reduce(function(costCounts, review) {
+    var cost = review.cost;
+    if (costCounts[cost] != null) {
+      costCounts[cost]++;
+    }
+    else {
+      costCounts[cost] = 1;
+    }
+    return costCounts;
+  }, {});
+};
+console.log(classifyReviewsByCost(reviews));
+
+</script>
